@@ -2,12 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>🎁 Claim Your Reward</title>
+  <title>🎁 Unlock Exclusive Rewards</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -95,6 +93,13 @@
       margin-top: 20px;
     }
 
+    .timer {
+      font-size: 1.2em;
+      margin-top: 15px;
+      color: #e74c3c;
+      font-weight: bold;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -104,51 +109,68 @@
 <body>
   <div class="container">
     <h1>🎉 Claim Your Free Reward</h1>
-    <p>Enter your email to unlock exclusive offers!</p>
+    <p>Enter your email to begin:</p>
 
     <input type="email" id="email" placeholder="Enter your email" required>
     <br>
-    <button onclick="unlockOffers()">Unlock Offers</button>
+    <button onclick="startCountdown()">Continue</button>
+
+    <div class="timer" id="timer" style="display:none;"></div>
 
     <div class="offers" id="offers">
       <div class="offer">
         <p>📝 Take a short survey to win rewards</p>
-        <a href="https://smrturl.co/a/s93403cf07a/62?s1=email_capture">Start Offer</a>
+        <a href="https://smrturl.co/a/s93403cf07a/62?s1=email_timer">Start Offer</a>
       </div>
       <div class="offer">
         <p>🎁 Claim a $100 Gift Card (USA)</p>
-        <a href="https://smrturl.co/a/s93403cf07a/86?s1=email_capture">Claim Now</a>
+        <a href="https://smrturl.co/a/s93403cf07a/86?s1=email_timer">Claim Now</a>
       </div>
       <div class="offer">
         <p>🚚 Free Sample Box – Enter Your ZIP</p>
-        <a href="https://smrturl.co/a/s93403cf07a/663?s1=email_capture">Get Sample</a>
+        <a href="https://smrturl.co/a/s93403cf07a/663?s1=email_timer">Get Sample</a>
       </div>
       <div class="offer">
         <p>💸 Win a PayPal Cash Reward</p>
-        <a href="https://smrturl.co/a/s93403cf07a/1610?s1=email_capture">Try Now</a>
+        <a href="https://smrturl.co/a/s93403cf07a/1610?s1=email_timer">Try Now</a>
       </div>
       <div class="offer">
         <p>🏠 Home Tester – Earn Products for Free</p>
-        <a href="https://smrturl.co/a/s93403cf07a/1704?s1=email_capture">Apply Here</a>
+        <a href="https://smrturl.co/a/s93403cf07a/1704?s1=email_timer">Apply Here</a>
       </div>
       <div class="offer">
         <p>📬 Sign Up & Win Prizes (US Only)</p>
-        <a href="https://smrturl.co/a/s93403cf07a/1511?s1=email_capture">Join Now</a>
+        <a href="https://smrturl.co/a/s93403cf07a/1511?s1=email_timer">Join Now</a>
       </div>
       <p class="note">* Complete just one offer to receive your reward.</p>
     </div>
   </div>
 
   <script>
-    function unlockOffers() {
+    function startCountdown() {
       const email = document.getElementById('email').value;
       if (!email.includes('@')) {
         alert("Please enter a valid email address.");
         return;
       }
-      // You can also send email to your server here via fetch/AJAX
-      document.getElementById('offers').style.display = 'block';
+
+      document.getElementById('timer').style.display = 'block';
+      document.getElementById('timer').innerText = "Unlocking offers in 10 seconds...";
+      let timeLeft = 10;
+
+      const countdown = setInterval(() => {
+        timeLeft--;
+        document.getElementById('timer').innerText = `Unlocking offers in ${timeLeft} seconds...`;
+
+        if (timeLeft <= 0) {
+          clearInterval(countdown);
+          document.getElementById('timer').style.display = 'none';
+          document.getElementById('offers').style.display = 'block';
+          document.getElementById('offers').scrollIntoView({ behavior: "smooth" });
+        }
+      }, 1000);
     }
   </script>
 </body>
 </html>
+
