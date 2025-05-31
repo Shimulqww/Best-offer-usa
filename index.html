@@ -5,77 +5,150 @@
   <title>🎁 Claim Your Reward</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: #f2f2f2;
-      padding: 30px;
-    }
-    .container {
-      max-width: 500px;
-      margin: auto;
-      background: white;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
       padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
+
+    .container {
+      background: #fff;
+      padding: 30px 25px;
+      border-radius: 20px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: all 0.4s ease-in-out;
+    }
+
     h1 {
       color: #2c3e50;
+      margin-bottom: 10px;
     }
+
+    p {
+      color: #555;
+    }
+
+    input[type="email"] {
+      padding: 12px;
+      width: 80%;
+      margin: 15px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 12px 25px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .offers {
+      display: none;
+      margin-top: 20px;
+      animation: fadeIn 1s forwards;
+    }
+
     .offer {
-      background: #eaf7ff;
-      border: 2px solid #2196F3;
-      margin: 10px 0;
+      background: #f0f9ff;
+      border-left: 5px solid #2196F3;
+      margin: 15px 0;
       padding: 15px;
       border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.05);
     }
+
     .offer a {
+      display: inline-block;
+      margin-top: 10px;
       text-decoration: none;
-      font-weight: bold;
-      color: #ffffff;
+      color: #fff;
       background: #2196F3;
       padding: 10px 20px;
-      border-radius: 5px;
-      display: inline-block;
+      border-radius: 6px;
     }
+
     .note {
-      font-size: 0.9em;
-      color: #555;
+      font-size: 0.85em;
+      color: #777;
       margin-top: 20px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>🎉 Claim Your Free Reward</h1>
-    <p>Select and complete **one** of the offers below to unlock your gift.</p>
+    <p>Enter your email to unlock exclusive offers!</p>
 
-    <div class="offer">
-      <p>📝 Take a short survey to win rewards</p>
-      <a href="https://smrturl.co/a/s93403cf07a/62?s1=" target="_blank">Start Offer</a>
-    </div>
-    <div class="offer">
-      <p>🎁 Claim a $100 Gift Card (USA)</p>
-      <a href="https://smrturl.co/a/s93403cf07a/86?s1=" target="_blank">Claim Now</a>
-    </div>
-    <div class="offer">
-      <p>🚚 Free Sample Box – Enter Your ZIP</p>
-      <a href="https://smrturl.co/a/s93403cf07a/663?s1=" target="_blank">Get Sample</a>
-    </div>
-    <div class="offer">
-      <p>💸 Win a PayPal Cash Reward</p>
-      <a href="https://smrturl.co/a/s93403cf07a/1610?s1=" target="_blank">Try Now</a>
-    </div>
-    <div class="offer">
-      <p>🏠 Home Tester – Earn Products for Free</p>
-      <a href="https://smrturl.co/a/s93403cf07a/1704?s1=" target="_blank">Apply Here</a>
-    </div>
-    <div class="offer">
-      <p>📬 Sign Up & Win Prizes (US Only)</p>
-      <a href="https://smrturl.co/a/s93403cf07a/1511?s1=" target="_blank">Join Now</a>
-    </div>
+    <input type="email" id="email" placeholder="Enter your email" required>
+    <br>
+    <button onclick="unlockOffers()">Unlock Offers</button>
 
-    <p class="note">* Complete just one offer. Rewards will be unlocked automatically.</p>
+    <div class="offers" id="offers">
+      <div class="offer">
+        <p>📝 Take a short survey to win rewards</p>
+        <a href="https://smrturl.co/a/s93403cf07a/62?s1=email_capture">Start Offer</a>
+      </div>
+      <div class="offer">
+        <p>🎁 Claim a $100 Gift Card (USA)</p>
+        <a href="https://smrturl.co/a/s93403cf07a/86?s1=email_capture">Claim Now</a>
+      </div>
+      <div class="offer">
+        <p>🚚 Free Sample Box – Enter Your ZIP</p>
+        <a href="https://smrturl.co/a/s93403cf07a/663?s1=email_capture">Get Sample</a>
+      </div>
+      <div class="offer">
+        <p>💸 Win a PayPal Cash Reward</p>
+        <a href="https://smrturl.co/a/s93403cf07a/1610?s1=email_capture">Try Now</a>
+      </div>
+      <div class="offer">
+        <p>🏠 Home Tester – Earn Products for Free</p>
+        <a href="https://smrturl.co/a/s93403cf07a/1704?s1=email_capture">Apply Here</a>
+      </div>
+      <div class="offer">
+        <p>📬 Sign Up & Win Prizes (US Only)</p>
+        <a href="https://smrturl.co/a/s93403cf07a/1511?s1=email_capture">Join Now</a>
+      </div>
+      <p class="note">* Complete just one offer to receive your reward.</p>
+    </div>
   </div>
+
+  <script>
+    function unlockOffers() {
+      const email = document.getElementById('email').value;
+      if (!email.includes('@')) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+      // You can also send email to your server here via fetch/AJAX
+      document.getElementById('offers').style.display = 'block';
+    }
+  </script>
 </body>
 </html>
